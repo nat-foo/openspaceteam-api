@@ -6,7 +6,6 @@ from aiohttp import web
 
 from singletons.config import Config
 from singletons.sio import Sio
-import server
 from singletons.words_storage import WordsStorage
 
 HEADER = """
@@ -36,7 +35,11 @@ def main():
 
     # Create sio and aiohttp server
     app = web.Application()
-    Sio().attach(app)
+    sio = Sio(cors_allowed_origins=[])
+    sio.attach(app)
+
+    # Config server functionality (see server/__init__.py)
+    import server
 
     # Load SSL context
     cert_path = Config()["SSL_CERT"]
