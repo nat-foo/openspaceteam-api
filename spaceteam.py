@@ -56,7 +56,7 @@ def main():
     web.run_app(
         app,
         host=Config()["SIO_HOST"],
-        port=Config()["SIO_PORT"],
+        port=Config()["PORT"],
         ssl_context=ssl_context
     )
 
