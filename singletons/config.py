@@ -12,7 +12,7 @@ class Config:
             "SINGLE_PLAYER": config("SINGLE_PLAYER", default="0", cast=bool),
 
             "SIO_HOST": config("SIO_HOST", default="127.0.0.1"),
-            "PORT": config("SIO_PORT", default=os.environ.get('PORT', 4433), cast=int),
+            "SIO_PORT": config("SIO_PORT", default=os.environ.get('PORT', 4433), cast=int),
 
             "SSL_CERT": config("SSL_CERT", default="cert.crt"),
             "SSL_KEY": config("SSL_KEY", default="key.key"),

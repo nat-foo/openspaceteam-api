@@ -8,6 +8,10 @@ from singletons.config import Config
 from singletons.sio import Sio
 from singletons.words_storage import WordsStorage
 
+# Jinja
+import aiohttp_jinja2
+import jinja2
+
 HEADER = """
   __  ___  __   ______ _____ ___  __  __ __  
 /' _/| _,\/  \ / _/ __|_   _| __|/  \|  V  | 
@@ -52,11 +56,26 @@ def main():
         logging.warning("SSL is disabled!")
         ssl_context = None
 
+    # Jinja2 setup
+    aiohttp_jinja2.setup(
+        app,
+        loader=jinja2.FileSystemLoader('./templates')
+    )
+
+    @aiohttp_jinja2.template("index.html")
+    async def index():
+        return
+        
+    app.add_routes([
+        web.get("/", index),
+        web.static("/static", "./static", show_index=True)
+    ])
+
     # Start server
     web.run_app(
         app,
         host=Config()["SIO_HOST"],
-        port=Config()["PORT"],
+        port=Config()["SIO_PORT"],
         ssl_context=ssl_context
     )
 
