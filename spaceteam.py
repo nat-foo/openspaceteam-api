@@ -62,10 +62,12 @@ def main():
         loader=jinja2.FileSystemLoader('./templates')
     )
 
-    @aiohttp_jinja2.template("index.html")
-    async def index():
-        return
-        
+    async def index(request):
+        context={"name": "world!"}
+        return aiohttp_jinja2.render_template(
+            "index.html", request, context
+        )
+
     app.add_routes([
         web.get("/", index),
         web.static("/static", "./static", show_index=True)
