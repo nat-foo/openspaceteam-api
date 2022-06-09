@@ -3,4 +3,3 @@ python-decouple==3.6
 python-socketio==4.6.0
 python-engineio==3.13.2
 aiohttp
-aiohttp_jinja2

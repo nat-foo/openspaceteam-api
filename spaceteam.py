@@ -20,7 +20,6 @@ HEADER = """
 
 """
 
-
 def main():
     logging.getLogger("aiohttp").setLevel(logging.CRITICAL)
     logging.getLogger().setLevel(logging.DEBUG if Config()["DEBUG"] else logging.INFO)
@@ -56,6 +55,7 @@ def main():
         logging.warning("SSL is disabled!")
         ssl_context = None
 
+    """
     # Jinja2 setup
     aiohttp_jinja2.setup(
         app,
@@ -63,6 +63,7 @@ def main():
     )
 
     async def index(request):
+        #return web.Response(text="Welcome home!")
         context={"name": "world!"}
         return aiohttp_jinja2.render_template(
             "index.html", request, context
@@ -72,6 +73,7 @@ def main():
         web.get("/", index),
         web.static("/static", "./static", show_index=True)
     ])
+    """
 
     # Start server
     web.run_app(
@@ -80,7 +82,6 @@ def main():
         port=Config()["SIO_PORT"],
         ssl_context=ssl_context
     )
-
 
 if __name__ == '__main__':
     main()
