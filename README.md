@@ -15,7 +15,7 @@ browser. This is a fork from [OpenSpaceTeam's](https://github.com/openspaceteam)
 ```bash
 $ git clone https://github.com/nat-foo/openspaceteam-api.git
 $ cd openspaceteam-api
-$ virtualenv -p $(which python3.6) .pyenv
+$ virtualenv -p $(which python3.6) .venv
 $ source .venv/bin/activate
 (.venv)$ pip install -r requirements.txt
 (.venv)$ python3 spaceteam.py
